@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+    <style>
+        body { font-family: Arial; margin: 50px; }
+        .container { width: 500px; margin: auto; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; }
+        button { width: 100%; padding: 12px; background: #007bff; color:white; border:none; cursor:pointer; }
+        button:hover { background:#0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🔐 Online Payment Fraud Check</h2>
+
+   <form action="/predict" method="POST" style="margin-top: 20px;">
+
+    <label>Transaction Amount:</label>
+    <input type="number" step="0.01" name="amount" required><br><br>
+
+    <label>Transaction Type:</label>
+    <select name="transaction_type" required>
+        <option value="PAYMENT">PAYMENT</option>
+        <option value="TRANSFER">TRANSFER</option>
+        <option value="CASH_OUT">CASH OUT</option>
+        <option value="DEBIT">DEBIT</option>
+        <option value="CASH_IN">CASH IN</option>
+    </select>
+    <br><br>
+
+    <label>Old Balance:</label>
+    <input type="number" step="0.01" name="old_balance" required><br><br>
+
+    <label>New Balance:</label>
+    <input type="number" step="0.01" name="new_balance" required><br><br>
+
+    <button type="submit">Predict</button>
+</form>
+
+{% if result %}
+<hr>
+<h2 style="color: {{color}};">{{ result }}</h2>
+<p>Confidence Score: {{ confidence }}</p>
+{% endif %}
+
+
+    {% if result %}
+        <h3 style="margin-top:20px;">
+            Prediction: <strong>{{result}}</strong>
+        </h3>
+    {% endif %}
+</div>
+
+</body>
+</html>
