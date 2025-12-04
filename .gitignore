@@ -1,0 +1,12 @@
+# Ignore virtual environment
+venv/
+env/
+
+# Ignore large datasets
+*.csv
+*.xlsx
+*.parquet
+
+# Ignore model binaries if large
+*.dll
+*.pkl
