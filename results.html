@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* Result Card */
+.result-box {
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ffffff, #f4f8ff);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Prediction text */
+.result-text {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Confidence */
+.confidence {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 18px;
+    color: #444;
+}
+
+/* Fraud badge styles */
+.fraud-alert {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.safe-alert {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Button styling */
+.back-btn {
+    background: linear-gradient(135deg, #111, #333);
+    border: none;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    display: block;
+    text-align: center;
+    width: 200px;
+    margin: 20px auto 0;
+}
+.back-btn:hover {
+    background: linear-gradient(135deg, #333, #111);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="result-box">
+
+    <h2 class="text-center mb-4">📢 Prediction Result</h2>
+
+    {% if "FRAUD" in prediction.upper() %}
+        <p class="result-text fraud-alert">🚨 {{ prediction }}</p>
+    {% else %}
+        <p class="result-text safe-alert">✅ {{ prediction }}</p>
+    {% endif %}
+
+    <p class="confidence">
+        🔍 Confidence Score: <strong>{{ score }}</strong>
+    </p>
+
+    <a href="/" class="back-btn">⬅ Back</a>
+
+</div>
+
+{% endblock %}
