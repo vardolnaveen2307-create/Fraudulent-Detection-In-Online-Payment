@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* ---------- CONTAINER CARD ---------- */
+.predict-card {
+    max-width: 550px;
+    margin: auto;
+    background: linear-gradient(135deg, #ffffff, #f1f5ff);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    transition: 0.3s;
+}
+.predict-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+}
+
+/* ---------- INPUT FIELD STYLING ---------- */
+.custom-input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #d4d4d4;
+    transition: 0.25s;
+}
+.custom-input:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 8px rgba(74,108,247,0.3);
+}
+
+/* ---------- LABELS ---------- */
+.form-label {
+    font-weight: 600;
+    color: #2a2a2a;
+}
+
+/* ---------- BUTTON ---------- */
+.predict-btn {
+    background: linear-gradient(135deg, #28a745, #1e8e3e);
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+.predict-btn:hover {
+    background: linear-gradient(135deg, #1e8e3e, #28a745);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(40,167,69,0.4);
+}
+</style>
+
+<div class="predict-card">
+
+    <h3 class="text-center mb-4" style="font-weight:700;">
+        🧮 Manual Fraud Prediction
+    </h3>
+
+    <form method="POST">
+
+        <!-- Amount -->
+        <label class="form-label">💵 Transaction Amount</label>
+        <input name="amount" placeholder="Enter amount"
+               class="form-control custom-input" required><br>
+
+        <!-- Type -->
+        <label class="form-label">🔁 Transaction Type</label>
+        <select name="transaction_type" class="form-control custom-input" required>
+            <option>PAYMENT</option>
+            <option>TRANSFER</option>
+            <option>CASH_OUT</option>
+            <option>DEBIT</option>
+            <option>CASH_IN</option>
+        </select><br>
+
+        <!-- Old Balance -->
+        <label class="form-label">🏦 Old Balance</label>
+        <input name="old_balance" placeholder="Enter previous balance"
+               class="form-control custom-input" required><br>
+
+        <!-- New Balance -->
+        <label class="form-label">💼 New Balance</label>
+        <input name="new_balance" placeholder="Enter new balance"
+               class="form-control custom-input" required><br>
+
+        <button class="predict-btn w-100 mt-2">Predict</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
